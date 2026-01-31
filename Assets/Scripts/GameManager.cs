@@ -127,6 +127,11 @@ public class GameManager : MonoBehaviour
         _uiBackpack.Hide();
     }
 
+    public bool HasItem(string itemName)
+    {
+        return _inventoryManager.HasItem(itemName);
+    }
+
     public void AddItem(InteractiveResult result)
     {
         _inventoryManager.AddItem(result);

@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public List<InventoryItem> items = new List<InventoryItem>();
+    public readonly List<InventoryItem> items = new();
+
+    public bool HasItem(string itemName)
+    {
+        return items.Exists(x => x.GetItemID() == itemName);
+    }
 
     public void AddItem(InteractiveResult result)
     {
