@@ -12,7 +12,7 @@ public class UIBackpack : MonoBehaviour
     [SerializeField]
     private UIHealthBar _uiHealthBar;
     [SerializeField]
-    private IconDataTable _iconDataTable;
+    private ItemDataTable _itemDataTable;
     [SerializeField]
     private List<UIBackpackSlot> _slots;
 
@@ -69,8 +69,14 @@ public class UIBackpack : MonoBehaviour
                 continue;
             }
 
-            Sprite icon = _iconDataTable.GetIcon(itemKey);
-            _slots[i].SetIcon(icon);
+            ItemData data = _itemDataTable.GetData(itemKey);
+            if (data == null)
+            {
+                _slots[i].SetIcon(null);
+                continue;
+            }
+
+            _slots[i].SetIcon(data.icon);
         }
 
         for (var i = items.Count; i < _slots.Count; i++)

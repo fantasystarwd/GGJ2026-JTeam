@@ -9,15 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4808d3d7f5e70304498b53e0596c2896, type: 3}
-  m_Name: IconDataTable
+  m_Script: {fileID: 11500000, guid: f74e5e3021f55584782972692e4aa614, type: 3}
+  m_Name: ItemDataTable
   m_EditorClassIdentifier: 
   _dataList:
-  - key: 
+  - id: potato
+    name: Potato
     icon: {fileID: 0}
-  - key: 
-    icon: {fileID: 0}
-  - key: 
-    icon: {fileID: 0}
-  - key: 
-    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
