@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class UIBackpack : MonoBehaviour
 {
     public event Action ButtonCloseClicked;
+    public event Action<int> ButtonUseClicked;
 
     [SerializeField]
     private Button _buttonClose;
+    [SerializeField]
+    private Button _buttonUse;
     [SerializeField]
     private UIHealthBar _uiHealthBar;
     [SerializeField]
@@ -19,10 +22,12 @@ public class UIBackpack : MonoBehaviour
     private List<UIBackpackSlot> _slots;
 
     private int _selectedSlotIndex = -1;
+    private readonly List<InventoryItem> _cachedItems = new();
 
     private void Start()
     {
         _buttonClose.onClick.AddListener(OnButtonCloseClicked);
+        _buttonUse.onClick.AddListener(OnButtonUseClicked);
         for (var i = 0; i < _slots.Count; i++)
         {
             int index = i;  // Capture the current index
@@ -35,6 +40,11 @@ public class UIBackpack : MonoBehaviour
         ButtonCloseClicked?.Invoke();
     }
 
+    private void OnButtonUseClicked()
+    {
+        ButtonUseClicked?.Invoke(_selectedSlotIndex);
+    }
+
     private void OnSlotClicked(int index)
     {
         SelectSlotIndex(index);
@@ -43,11 +53,14 @@ public class UIBackpack : MonoBehaviour
     private void Update()
     {
         NavigateSlot();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            OnButtonUseClicked();
+        }
     }
 
     public void Show()
     {
-        SelectSlotIndex(0);
         gameObject.SetActive(true);
     }
 
@@ -63,6 +76,9 @@ public class UIBackpack : MonoBehaviour
 
     public void SetItems(IReadOnlyList<InventoryItem> items)
     {
+        _cachedItems.Clear();
+        _cachedItems.AddRange(items);
+
         for (var i = 0; i < items.Count; i++)
         {
             string itemKey = items[i].GetItemID();
@@ -100,12 +116,25 @@ public class UIBackpack : MonoBehaviour
         {
             _selectedSlotIndex = -1;
             _selectionHighlight.gameObject.SetActive(false);
+            _buttonUse.gameObject.SetActive(false);
             return;
         }
 
         _selectedSlotIndex = index;
         _selectionHighlight.transform.position = _slots[index].transform.position;
         _selectionHighlight.gameObject.SetActive(true);
+
+        bool isItemUsable = false;
+        if (index >= 0 && index < _cachedItems.Count)
+        {
+            InventoryItem item = _cachedItems[index];
+            ItemData data = _itemDataTable.GetData(item.GetItemID());
+            if (data != null)
+            {
+                isItemUsable = data.isUsable;
+            }
+        }
+        _buttonUse.gameObject.SetActive(isItemUsable);
     }
 
     // Assume 4 slot per row

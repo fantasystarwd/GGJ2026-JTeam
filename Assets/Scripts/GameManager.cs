@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
     {
         _uiMain.ButtonBackpackClicked += OpenUIBackpack;
         _uiBackpack.ButtonCloseClicked += CloseUIBackpack;
+        _uiBackpack.ButtonUseClicked += UseItem;
 
         _uiScreenFader.ForceFadeIn();
         _uiTextBubble.ForceHide();
@@ -142,8 +143,8 @@ public class GameManager : MonoBehaviour
     {
         _isRunning = false;
         _uiMain.Hide();
-        _uiBackpack.SetHealth(Mathf.FloorToInt(_healthCurrent), _healthMax);
-        _uiBackpack.SetItems(_inventoryManager.items);
+        RefreshUIBackpack();
+        _uiBackpack.SelectSlotIndex(0);
         _uiBackpack.Show();
     }
 
@@ -152,6 +153,12 @@ public class GameManager : MonoBehaviour
         _isRunning = true;
         _uiMain.Show();
         _uiBackpack.Hide();
+    }
+
+    private void RefreshUIBackpack()
+    {
+        _uiBackpack.SetHealth(Mathf.FloorToInt(_healthCurrent), _healthMax);
+        _uiBackpack.SetItems(_inventoryManager.items);
     }
 
     public bool HasItem(string itemName)
@@ -167,6 +174,19 @@ public class GameManager : MonoBehaviour
     public void RemoveItem(string itemName)
     {
         _inventoryManager.RemoveItem(itemName);
+    }
+
+    public void UseItem(int index)
+    {
+        if (index < 0 || index >= _inventoryManager.items.Count)
+        {
+            return;
+        }
+
+        Debug.Log($"Use item at index {index}");
+        //_inventoryManager.UseItem(index);
+        RefreshUIBackpack();
+        _uiBackpack.SelectSlotIndex(index);
     }
 
     public void ShowTextBubble(Transform pivot, string text)
