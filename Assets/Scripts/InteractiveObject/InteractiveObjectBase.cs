@@ -38,6 +38,7 @@ public struct InteractiveResult
     public MaskClass maskClass;
     public AccessoriesType accessoriesType;
     public PropType propType;
+    public InteractObject actObject;
 }
 
 public class InteractiveObjectBase : MonoBehaviour
@@ -127,17 +128,10 @@ public class InteractiveObjectBase : MonoBehaviour
                 case InteractiveResultType.GetObject:
                     break;
                 case InteractiveResultType.OpenObstacle:
-                    OpenObstacle();
+                    Debug.Log("[Interactive] Obstacle opened.");
+                    result.actObject.SetState(true);
                     break;
             }
         }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void OpenObstacle()
-    {
-        Debug.Log("[Interactive] Obstacle opened.");
     }
 }
