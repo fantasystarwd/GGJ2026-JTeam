@@ -70,6 +70,11 @@ public class InteractiveObjectBase : MonoBehaviour
     private bool CloseIfSuccess = false;
 
     /// <summary>
+    /// 顯示訊息茅點設定
+    /// </summary>
+    private Transform showMessageAnchor;
+
+    /// <summary>
     /// 玩家與此物件互動時觸發
     /// </summary>
     public void Interact(PlayerMovement player)
@@ -119,6 +124,15 @@ public class InteractiveObjectBase : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        showMessageAnchor = transform.Find("ShowMessageAnchor");
+        if (showMessageAnchor == null)
+        {
+            showMessageAnchor = transform;
+        }
+    }
+
     private void ProcessInteractiveResult(ref InteractiveResult[] results)
     {
         foreach (var result in results)
@@ -126,6 +140,7 @@ public class InteractiveObjectBase : MonoBehaviour
             switch (result.resultType)
             {
                 case InteractiveResultType.ShowMessage:
+                    GameManager.Instance.ShowTextBubble(showMessageAnchor, result.message);
                     Debug.Log($"[Interactive] {result.message}");
                     break;
                 case InteractiveResultType.GetObject:
