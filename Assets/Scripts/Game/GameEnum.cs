@@ -1,19 +1,35 @@
 
 /// <summary>
-/// ­±¨ãÂ¾·~©w¸q
+/// é¢å…·è·æ¥­å®šç¾©
 /// </summary>
 public enum MaskClass
 {
-    None, // ¥¼¸Ë³Æ­±¨ã®É
+    None, // æœªè£å‚™é¢å…·æ™‚
     Cook,
 }
 
 /// <summary>
-/// ª±®a«ù¦³¹D¨ãÃş§O©w¸q
+/// é£¾å“é¡åˆ¥å®šç¾©
+/// </summary>
+public enum AccessoriesType
+{
+    None,
+}
+
+/// <summary>
+/// é“å…·é¡åˆ¥å®šç¾©
+/// </summary>
+public enum PropType
+{
+    None,  
+}
+
+/// <summary>
+/// ç©å®¶æŒæœ‰é“å…·é¡åˆ¥å®šç¾©
 /// </summary>
 public enum ObjectType
 {
-    Mask, // ­±¨ã
-    accessories, // ¹¢«~
-    Prop, // ¹D¨ã
+    Mask, // é¢å…·
+    accessories, // é£¾å“
+    Prop, // é“å…·
 }
