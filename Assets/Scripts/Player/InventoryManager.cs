@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public readonly List<InventoryItem> items = new();
+    public List<InventoryItem> items = new();
 
     public bool HasItem(string itemName)
     {
