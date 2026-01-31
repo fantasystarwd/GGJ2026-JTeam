@@ -10,10 +10,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private InteractiveObjectBase currentInteractable;
 
+    private Animator animator;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -24,8 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveDirection != Vector3.zero)
         {
+            transform.Translate(-moveDirection * moveSpeed * Time.deltaTime, Space.World);
             Quaternion targetRot = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * rotateSpeed);
+        }
+
+        if (animator != null)
+        {
+            animator.SetFloat("Run", moveDirection.magnitude);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -37,10 +44,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -59,4 +62,6 @@ public class PlayerMovement : MonoBehaviour
             currentInteractable = null;
         }
     }
+
+    //切換面具
 }
