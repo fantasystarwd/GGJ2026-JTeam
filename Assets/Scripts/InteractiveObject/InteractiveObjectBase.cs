@@ -13,6 +13,7 @@ public enum InteractiveConditionType
 public enum InteractiveResultType
 {
     ShowMessage,
+    WearMask,
     GetObject,
     OpenObstacle,
     Cooking,
@@ -25,6 +26,7 @@ public enum InteractiveResultType
 public struct InteractiveCondition
 {
     public InteractiveConditionType conditionType;
+    public bool isAntiLogic;
     public MaskClass maskClass;
     public AccessoriesType accessoriesType;
     public ObjectType objectType;
@@ -85,21 +87,21 @@ public class InteractiveObjectBase : MonoBehaviour
             switch (condition.conditionType)
             {
                 case InteractiveConditionType.MaskClass:
-                    if (player.myCurrentMask != condition.maskClass)
+                    if (player.myCurrentMask != condition.maskClass != condition.isAntiLogic)
                     {
                         canInteract = false;
                     }
                     break;
                 case InteractiveConditionType.AccessoriesType:
 
-                    if (!GameManager.Instance.HasItem(condition.accessoriesType.ToString()))
+                    if ((!GameManager.Instance.HasItem(condition.accessoriesType.ToString())) != condition.isAntiLogic)
                     {
                         canInteract = false;
                     }
                     break;
                 case InteractiveConditionType.ObjectType:
 
-                    if (!GameManager.Instance.HasItem(condition.objectType.ToString()))
+                    if ((!GameManager.Instance.HasItem(condition.objectType.ToString())) != condition.isAntiLogic)
                     {
                         canInteract = false;
                     }
@@ -146,6 +148,8 @@ public class InteractiveObjectBase : MonoBehaviour
                 case InteractiveResultType.ShowMessage:
                     GameManager.Instance.ShowTextBubble(showMessageAnchor, result.message);
                     break;
+                case InteractiveResultType.WearMask:
+                    break;
                 case InteractiveResultType.GetObject:
                     GameManager.Instance.AddItem(result.getObject);
                     break;
@@ -153,7 +157,7 @@ public class InteractiveObjectBase : MonoBehaviour
                     result.actObject.SetState(true);
                     break;
                 case InteractiveResultType.Cooking:
-                    for(PropType prop = PropType.mushroom; prop <= PropType.rawmeat; prop++)
+                    for (PropType prop = PropType.mushroom; prop <= PropType.rawmeat; prop++)
                     {
                         if (GameManager.Instance.HasItem(prop.ToString()))
                         {

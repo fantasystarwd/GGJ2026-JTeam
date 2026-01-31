@@ -5,6 +5,7 @@
 public enum MaskClass
 {
     None, // 未裝備面具時
+    White,
     Cook,
 }
 
