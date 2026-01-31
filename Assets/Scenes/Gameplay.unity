@@ -927,6 +927,10 @@ MonoBehaviour:
   _uiTextBubble: {fileID: 946148129}
   _uiMain: {fileID: 5783196719517333293}
   _uiBackpack: {fileID: 8794296728498706715}
+  _isRunning: 0
+  _healthCurrent: 0
+  _healthMax: 180
+  _costPerSecond: 1
 --- !u!4 &1677136878
 Transform:
   m_ObjectHideFlags: 0
@@ -954,9 +958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ca53e7bb6c84f46a43d07fcce201cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
-  inventoryUI: {fileID: 0}
-  isOpen: 0
 --- !u!224 &1736795219 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 547393179590823290, guid: 46c4932af8f580541b0c27de8991a710, type: 3}
@@ -1019,10 +1020,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1111111111111111111111111111111111
+  m_text: "\u54C8\u56C9"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a731da105d9455f438f21a760c2150a7, type: 2}
+  m_sharedMaterial: {fileID: -5699420690861800767, guid: a731da105d9455f438f21a760c2150a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
