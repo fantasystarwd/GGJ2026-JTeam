@@ -18,6 +18,11 @@ public class UITextBubble : MonoBehaviour
 
     private CancellationTokenSource _cancellationTokenSource;
 
+    private void Awake()
+    {
+        _root = transform.parent as RectTransform;
+    }
+
     private void OnDestroy()
     {
         if (_cancellationTokenSource != null)
