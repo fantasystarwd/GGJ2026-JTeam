@@ -7,8 +7,16 @@ public class UIScreenFader : MonoBehaviour
     [SerializeField]
     private CanvasGroup _canvasGroup;
 
+    public void ForceFadeIn()
+    {
+        _canvasGroup.alpha = 0f;
+        _canvasGroup.gameObject.SetActive(false);
+    }
+
     public async UniTask FadeInAsync(float duration, CancellationToken cancellationToken)
     {
+        _canvasGroup.gameObject.SetActive(true);
+
         float elapsedTime = 0f;
         _canvasGroup.alpha = 1f;
         while (elapsedTime < duration)
@@ -22,10 +30,14 @@ public class UIScreenFader : MonoBehaviour
             }
         }
         _canvasGroup.alpha = 0f;
+
+        _canvasGroup.gameObject.SetActive(false);
     }
 
     public async UniTask FadeOutAsync(float duration, CancellationToken cancellationToken)
     {
+        _canvasGroup.gameObject.SetActive(true);
+
         float elapsedTime = 0f;
         _canvasGroup.alpha = 0f;
         while (elapsedTime < duration)

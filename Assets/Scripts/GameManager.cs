@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
         _uiMain.Show();
         _uiBackpack.Hide();
+        _uiScreenFader.ForceFadeIn();
     }
 
     private void Update()
