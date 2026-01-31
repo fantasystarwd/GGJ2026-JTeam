@@ -40,12 +40,10 @@ public class GameManager : MonoBehaviour
         {
             if (_uiBackpack.gameObject.activeSelf)
             {
-                _uiMain.Show();
                 CloseUIBackpack();
             }
             else
             {
-                _uiMain.gameObject.SetActive(false);
                 OpenUIBackpack();
             }
         }
@@ -81,11 +79,13 @@ public class GameManager : MonoBehaviour
 
     private void OpenUIBackpack()
     {
+        _uiMain.Hide();
         _uiBackpack.Show();
     }
 
     private void CloseUIBackpack()
     {
+        _uiMain.Show();
         _uiBackpack.Hide();
     }
 }

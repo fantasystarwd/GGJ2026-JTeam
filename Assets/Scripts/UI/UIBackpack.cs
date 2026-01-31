@@ -14,12 +14,17 @@ public class UIBackpack : MonoBehaviour
 
     private void Start()
     {
-        _buttonClose.onClick.AddListener(() => gameObject.SetActive(false));
+        _buttonClose.onClick.AddListener(OnButtonCloseClicked);
         for (var i = 0; i < _slots.Count; i++)
         {
             int index = i;  // Capture the current index
             _slots[i].Clicked += () => OnSlotClicked(index);
         }
+    }
+
+    private void OnButtonCloseClicked()
+    {
+        ButtonCloseClicked?.Invoke();
     }
 
     private void OnSlotClicked(int index)
