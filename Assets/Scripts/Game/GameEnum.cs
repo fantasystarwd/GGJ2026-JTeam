@@ -7,6 +7,14 @@ public enum MaskClass
     None, // 未裝備面具時
     White,
     Cook,
+	Thief,
+	Artisan,
+	Wrestler,
+	Scholar,
+	Prism,
+	oxygenMask,
+	StoneMask,
+	MemoryMask
 }
 
 /// <summary>
@@ -15,6 +23,10 @@ public enum MaskClass
 public enum AccessoriesType
 {
     None,
+	Glassbead,
+	Feather,
+	Icecrystal,
+	Pyroxene,
 }
 
 /// <summary>
