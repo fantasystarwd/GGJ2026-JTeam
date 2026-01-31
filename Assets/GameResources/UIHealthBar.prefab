@@ -121,8 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db8e1b80d3f56440ab1da9264892858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _container: {fileID: 3289378570291721578}
   _fill: {fileID: 6259930898172696258}
   _text: {fileID: 92903924432662911}
+  _widthPerValue: 3
 --- !u!1 &7096251985443658408
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,11 +227,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3289378570291721578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8207021488462124856
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -292,8 +294,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
