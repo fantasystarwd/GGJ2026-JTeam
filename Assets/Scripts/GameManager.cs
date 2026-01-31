@@ -7,11 +7,17 @@ public class GameManager : MonoBehaviour
     public const KeyCode KeyCodeBackpack = KeyCode.B;
 
     [SerializeField]
+    private Camera _gameCamera;
+    [SerializeField]
+    private Camera _uiCamera;
+    [SerializeField]
     private Transform _startPosition;
     [SerializeField]
     private Transform _player;
     [SerializeField]
     private UIScreenFader _uiScreenFader;
+    [SerializeField]
+    private UITextBubble _uiTextBubble;
 
     [Header("UI")]
     [SerializeField]
@@ -24,9 +30,11 @@ public class GameManager : MonoBehaviour
         _uiMain.ButtonBackpackClicked += OpenUIBackpack;
         _uiBackpack.ButtonCloseClicked += CloseUIBackpack;
 
+        _uiScreenFader.ForceFadeIn();
+        _uiTextBubble.ForceHide();
+
         _uiMain.Show();
         _uiBackpack.Hide();
-        _uiScreenFader.ForceFadeIn();
     }
 
     private void Update()
@@ -46,6 +54,11 @@ public class GameManager : MonoBehaviour
             {
                 OpenUIBackpack();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            ShowTextBubble(_player, "Hello, this is a text bubble!");
         }
     }
 
@@ -87,5 +100,10 @@ public class GameManager : MonoBehaviour
     {
         _uiMain.Show();
         _uiBackpack.Hide();
+    }
+
+    public void ShowTextBubble(Transform pivot, string text)
+    {
+        _uiTextBubble.Show(pivot, _gameCamera, _uiCamera, text);
     }
 }
