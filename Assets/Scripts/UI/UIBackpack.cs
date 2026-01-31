@@ -27,4 +27,14 @@ public class UIBackpack : MonoBehaviour
         Debug.Log($"Slot {index} clicked.");
         // Handle slot click logic here
     }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
 }

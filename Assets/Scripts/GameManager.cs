@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public const KeyCode KeyCodeBackpack = KeyCode.B;
+
     [SerializeField]
     private Transform _startPosition;
     [SerializeField]
@@ -11,11 +13,40 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIScreenFader _uiScreenFader;
 
+    [Header("UI")]
+    [SerializeField]
+    private UIMain _uiMain;
+    [SerializeField]
+    private UIBackpack _uiBackpack;
+
+    private void Start()
+    {
+        _uiMain.ButtonBackpackClicked += OpenUIBackpack;
+        _uiBackpack.ButtonCloseClicked += CloseUIBackpack;
+
+        _uiMain.Show();
+        _uiBackpack.Hide();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
             OnTimeReset();
+        }
+
+        if (Input.GetKeyDown(KeyCodeBackpack))
+        {
+            if (_uiBackpack.gameObject.activeSelf)
+            {
+                _uiMain.Show();
+                CloseUIBackpack();
+            }
+            else
+            {
+                _uiMain.gameObject.SetActive(false);
+                OpenUIBackpack();
+            }
         }
     }
 
@@ -45,5 +76,15 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+    }
+
+    private void OpenUIBackpack()
+    {
+        _uiBackpack.Show();
+    }
+
+    private void CloseUIBackpack()
+    {
+        _uiBackpack.Hide();
     }
 }
