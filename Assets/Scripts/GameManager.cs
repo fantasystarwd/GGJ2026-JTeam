@@ -76,11 +76,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            OnTimeReset();
-        }
-
         if (Input.GetKeyDown(KeyCodeBackpack))
         {
             if (_uiBackpack.gameObject.activeSelf)
@@ -91,11 +86,6 @@ public class GameManager : MonoBehaviour
             {
                 OpenUIBackpack();
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            ShowTextBubble(_player, "Hello, this is a text bubble!");
         }
 
         if (_isRunning)
