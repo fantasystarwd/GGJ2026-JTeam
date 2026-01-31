@@ -59,9 +59,4 @@ public class PlayerMovement : MonoBehaviour
             currentInteractable = null;
         }
     }
-
-    public bool HasObjectType(ObjectType type)
-    {
-        return InventoryManager.Instance.items.Contains(type.ToString());
-    }
 }

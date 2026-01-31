@@ -9,7 +9,7 @@ public class InteractableObj : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("°õ¦æ¤¬°Ê: " + interactMessage);
-        InventoryManager.Instance.AddItem(interactMessage);
+        Debug.Log("åŸ·è¡Œäº’å‹•: " + interactMessage);
+        //InventoryManager.Instance.AddItem(interactMessage);
     }
 }
