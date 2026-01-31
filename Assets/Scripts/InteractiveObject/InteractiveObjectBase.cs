@@ -70,7 +70,7 @@ public class InteractiveObjectBase : MonoBehaviour
     /// <summary>
     /// 玩家與此物件互動時觸發
     /// </summary>
-    public void Interact()
+    public void Interact(ref PlayerMovement player)
     {
         // 條件判斷
         bool canInteract = true;
