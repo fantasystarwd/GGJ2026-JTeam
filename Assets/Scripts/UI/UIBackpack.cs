@@ -10,6 +10,8 @@ public class UIBackpack : MonoBehaviour
     [SerializeField]
     private Button _buttonClose;
     [SerializeField]
+    private UIHealthBar _uiHealthBar;
+    [SerializeField]
     private IconDataTable _iconDataTable;
     [SerializeField]
     private List<UIBackpackSlot> _slots;
@@ -43,6 +45,11 @@ public class UIBackpack : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    public void SetHealth(int current, int max)
+    {
+        _uiHealthBar.SetValue(current, max);
     }
 
     public void SetItems(IReadOnlyList<InventoryItem> items)

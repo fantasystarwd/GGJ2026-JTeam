@@ -179,6 +179,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5498759084946751847}
+  - {fileID: 4860967467376487951}
   - {fileID: 6659385277793424543}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonClose: {fileID: 837657536180776555}
+  _uiHealthBar: {fileID: 7908857720500925419}
   _iconDataTable: {fileID: 11400000, guid: f6e86e80adbeb044b885d525350019c1, type: 2}
   _slots:
   - {fileID: 5287652117775113072}
@@ -1307,6 +1309,87 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de6884c82d60af847a6324331d5bf5f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &7985894005901728613
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1882717436281145503}
+    m_Modifications:
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931204831001731782, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+      propertyPath: m_Name
+      value: UIHealthBar
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+--- !u!224 &4860967467376487951 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+  m_PrefabInstance: {fileID: 7985894005901728613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7908857720500925419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 221362993099810958, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+  m_PrefabInstance: {fileID: 7985894005901728613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db8e1b80d3f56440ab1da9264892858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8133525274669431953

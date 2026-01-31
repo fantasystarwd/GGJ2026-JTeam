@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55590e964c2d4ea4f8ac9c445b2ddbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _uiHealthBar: {fileID: 6716883561981677470}
   _buttonBackpack: {fileID: 316737458201075837}
 --- !u!1001 &6783927899099866896
 PrefabInstance:
@@ -371,6 +372,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+--- !u!114 &6716883561981677470 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 221362993099810958, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}
+  m_PrefabInstance: {fileID: 6783927899099866896}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db8e1b80d3f56440ab1da9264892858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8323604402295313018 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3289378570291721578, guid: 6dc5eb0020aac41428ffdb9cbead5b8b, type: 3}

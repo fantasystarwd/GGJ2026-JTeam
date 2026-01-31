@@ -27,6 +27,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIBackpack _uiBackpack;
 
+    [Header("Data")]
+    [SerializeField]
+    private bool _isRunning;
+    [SerializeField]
+    private float _healthCurrent;
+    [SerializeField]
+    private int _healthMax = 180;
+    [SerializeField]
+    private float _costPerSecond = 1f;
+
     private static GameManager _instance;
 
     public static GameManager Instance => _instance;
@@ -59,6 +69,9 @@ public class GameManager : MonoBehaviour
 
         _uiMain.Show();
         _uiBackpack.Hide();
+
+        _isRunning = true;
+        _healthCurrent = _healthMax;
     }
 
     private void Update()
@@ -84,6 +97,22 @@ public class GameManager : MonoBehaviour
         {
             ShowTextBubble(_player, "Hello, this is a text bubble!");
         }
+
+        if (_isRunning)
+        {
+            CostHealth();
+            _uiMain.SetHealth(Mathf.FloorToInt(_healthCurrent), _healthMax);
+        }
+    }
+
+    private void CostHealth()
+    {
+        _healthCurrent -= _costPerSecond * Time.deltaTime;
+        if (_healthCurrent <= 0)
+        {
+            _healthCurrent = 0;
+            OnTimeReset();
+        }
     }
 
     public void OnTimeReset()
@@ -93,6 +122,8 @@ public class GameManager : MonoBehaviour
 
     private async UniTaskVoid TimeResetAsync(CancellationToken cancellationToken)
     {
+        _isRunning = false;
+
         await _uiScreenFader.FadeOutAsync(1.0f, cancellationToken);
         if (cancellationToken.IsCancellationRequested)
         {
@@ -105,6 +136,7 @@ public class GameManager : MonoBehaviour
 
         // Reset backpack
         // Reset hp
+        _healthCurrent = _healthMax;
         // Reset level items
 
         await _uiScreenFader.FadeInAsync(1.0f, cancellationToken);
@@ -112,17 +144,22 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
+        _isRunning = true;
     }
 
     private void OpenUIBackpack()
     {
+        _isRunning = false;
         _uiMain.Hide();
+        _uiBackpack.SetHealth(Mathf.FloorToInt(_healthCurrent), _healthMax);
         _uiBackpack.SetItems(_inventoryManager.items);
         _uiBackpack.Show();
     }
 
     private void CloseUIBackpack()
     {
+        _isRunning = true;
         _uiMain.Show();
         _uiBackpack.Hide();
     }

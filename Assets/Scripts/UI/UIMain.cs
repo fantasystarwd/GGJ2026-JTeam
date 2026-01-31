@@ -7,6 +7,8 @@ public class UIMain : MonoBehaviour
     public event Action ButtonBackpackClicked;
 
     [SerializeField]
+    private UIHealthBar _uiHealthBar;
+    [SerializeField]
     private Button _buttonBackpack;
 
     private void Awake()
@@ -27,5 +29,10 @@ public class UIMain : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    public void SetHealth(int current, int max)
+    {
+        _uiHealthBar.SetValue(current, max);
     }
 }
