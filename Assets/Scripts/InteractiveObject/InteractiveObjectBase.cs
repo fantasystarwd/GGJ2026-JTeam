@@ -6,6 +6,7 @@ public enum InteractiveConditionType
 {
     None,
     MaskClass,
+    AccessoriesType,
     ObjectType,
 }
 
@@ -24,6 +25,7 @@ public struct InteractiveCondition
 {
     public InteractiveConditionType conditionType;
     public MaskClass maskClass;
+    public AccessoriesType accessoriesType;
     public ObjectType objectType;
 }
 
@@ -78,13 +80,14 @@ public class InteractiveObjectBase : MonoBehaviour
         {
             switch (condition.conditionType)
             {
-                //case InteractiveConditionType.MaskClass:
-                //    if (GameManager.Instance.Player.MaskClass != condition.maskClass)
-                //    {
-                //        canInteract = false;
-                //    }
-                //    break;
+                case InteractiveConditionType.MaskClass:
+                    if (player.myCurrentMask != condition.maskClass)
+                    {
+                        canInteract = false;
+                    }
+                    break;
                 //case InteractiveConditionType.ObjectType:
+
                 //    if (!GameManager.Instance.Player.HasObjectType(condition.objectType))
                 //    {
                 //        canInteract = false;
