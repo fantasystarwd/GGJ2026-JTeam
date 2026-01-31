@@ -5,9 +5,8 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
-    [Header("≠I•]≥]©w")]
-    public List<string> items = new List<string>(); 
-    public GameObject inventoryUI;                 
+    public List<InventoryItem> items = new List<InventoryItem>();
+    public GameObject inventoryUI;
     public bool isOpen = false;
 
     void Awake()
@@ -33,19 +32,28 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-
-    public void AddItem(string itemName)
+    public void AddItem(InteractiveResult result)
     {
-        items.Add(itemName);
-        Debug.Log($"¿Ú±o™´´~: {itemName}°C•ÿ´eº∆∂q: {items.Count}");
+        InventoryItem newItem = new InventoryItem
+        {
+            itemType = result.resultType,
+            maskClass = result.maskClass,
+            accessoriesType = result.accessoriesType,
+            propType = result.propType
+        };
+
+        items.Add(newItem);
+        Debug.Log($"Áç≤ÂæóÁâ©ÂìÅ: {newItem.GetItemID()}„ÄÇÁõÆÂâçÊï∏Èáè: {items.Count}");
     }
 
     public void RemoveItem(string itemName)
     {
-        if (items.Contains(itemName))
+        InventoryItem toRemove = items.Find(x => x.GetItemID() == itemName);
+
+        if (toRemove.GetItemID() == itemName)
         {
-            items.Remove(itemName);
-            Debug.Log($"≤æ∞£™´´~: {itemName}");
+            items.Remove(toRemove);
+            Debug.Log($"ÁßªÈô§Áâ©ÂìÅ: {itemName}");
         }
     }
 
@@ -53,7 +61,7 @@ public class InventoryManager : MonoBehaviour
     {
         isOpen = true;
         if (inventoryUI != null) inventoryUI.SetActive(true);
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
     }
 
