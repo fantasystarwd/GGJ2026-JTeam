@@ -61,6 +61,12 @@ public class InteractiveObjectBase : MonoBehaviour
     private InteractiveResult[] interactiveFailResults;
 
     /// <summary>
+    /// 互動成功後是否關閉此物件
+    /// </summary>
+    [SerializeField]
+    private bool CloseIfSuccess = false;
+
+    /// <summary>
     /// 玩家與此物件互動時觸發
     /// </summary>
     public void Interact()
@@ -102,6 +108,11 @@ public class InteractiveObjectBase : MonoBehaviour
 
         Debug.Log($"[Interactive] Success");
         ProcessInteractiveResult(ref interactiveSuccessResults);
+
+        if (CloseIfSuccess)
+        {
+           gameObject.SetActive(false);
+        }
     }
 
     private void ProcessInteractiveResult(ref InteractiveResult[] results)
