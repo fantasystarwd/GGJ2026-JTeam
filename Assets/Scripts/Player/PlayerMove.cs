@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public MaskClass myCurrentMask;
     public AccessoriesType myCurrentAccessory;
 
+    public bool disableTag= false;
+
     [System.Serializable]
     public struct ModelMap<T>
     {
@@ -33,21 +35,30 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (disableTag) return;
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector3(moveX, 0, moveZ).normalized;
 
         if (moveDirection != Vector3.zero)
         {
-            transform.Translate(-moveDirection * moveSpeed * Time.deltaTime, Space.World);
-            Quaternion targetRot = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * rotateSpeed);
+            transform.position += moveDirection * moveSpeed * Time.deltaTime;
+
+            Transform playerVisual = transform.GetChild(0);
+            if (playerVisual != null && moveX != 0)
+            {
+                Vector3 newScale = playerVisual.localScale;
+
+                newScale.x = (moveX > 0) ? Mathf.Abs(newScale.x) : -Mathf.Abs(newScale.x);
+                playerVisual.localScale = newScale;
+            }
         }
 
-        
+
         if (animator != null)
         {
-            bool isMoving = moveDirection.magnitude > 0.5f;
+            bool isMoving = moveDirection.sqrMagnitude > 0;
             animator.SetBool("Run", isMoving);
         }
 
@@ -105,5 +116,19 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-        
+
+    //禁用操作
+    public void DisabledMovement(bool isDisabled)
+    {
+        disableTag = isDisabled;
+
+        if (disableTag)
+        {
+            moveDirection = Vector3.zero;
+            if (animator != null)
+            {
+                animator.SetBool("Run", false); 
+            }
+        }
+    }
 }
