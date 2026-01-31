@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         if (_isRunning)
         {
             CostHealth();
-            _uiMain.SetHealth(Mathf.FloorToInt(_healthCurrent), _healthMax);
+            _uiMain.SetHealth(Mathf.CeilToInt(_healthCurrent), _healthMax);
         }
     }
 
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
 
     private void RefreshUIBackpack()
     {
-        _uiBackpack.SetHealth(Mathf.FloorToInt(_healthCurrent), _healthMax);
+        _uiBackpack.SetHealth(Mathf.CeilToInt(_healthCurrent), _healthMax);
         _uiBackpack.SetItems(_inventoryManager.items);
     }
 
