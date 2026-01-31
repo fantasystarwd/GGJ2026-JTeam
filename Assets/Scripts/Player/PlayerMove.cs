@@ -1,10 +1,10 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float rotateSpeed = 10f;
-    public MaskClass myCurrentMask;
 
     private Rigidbody rb;
     private Vector3 moveDirection;
@@ -12,9 +12,23 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    public MaskClass myCurrentMask;
+    public AccessoriesType myCurrentAccessory;
+
+    [System.Serializable]
+    public struct ModelMap<T>
+    {
+        public T type;
+        public GameObject modelObject;
+    }
+
+    public List<ModelMap<MaskClass>> maskModels;
+    public List<ModelMap<AccessoriesType>> accessoryModels;
+
+
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -30,9 +44,11 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * rotateSpeed);
         }
 
+        
         if (animator != null)
         {
-            animator.SetFloat("Run", moveDirection.magnitude);
+            bool isMoving = moveDirection.magnitude > 0.5f;
+            animator.SetBool("Run", isMoving);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -64,4 +80,30 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //切換面具
+    public void ChangeMask(MaskClass newMask)
+    {
+        myCurrentMask = newMask;
+
+        foreach (var map in maskModels)
+        {
+            if (map.modelObject != null)
+            {
+                map.modelObject.SetActive(map.type == newMask);
+            }
+        }
+    }
+    //切換飾品
+    public void ChangeAccessory(AccessoriesType newAccessory)
+    {
+        myCurrentAccessory = newAccessory;
+
+        foreach (var map in accessoryModels)
+        {
+            if (map.modelObject != null)
+            {
+                map.modelObject.SetActive(map.type == newAccessory);
+            }
+        }
+    }
+        
 }
