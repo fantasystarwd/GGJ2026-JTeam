@@ -3,11 +3,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public PlayerJob myJob;         
-    public float interactRange = 2f; 
+    public float rotateSpeed = 10f;
+    public MaskClass myCurrentMask;
 
     private Rigidbody rb;
-    private Vector2 moveInput;
+    private Vector3 moveDirection;
+    private InteractiveObjectBase currentInteractable;
 
     void Start()
     {
@@ -17,52 +18,50 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        moveInput.x = Input.GetAxisRaw("Horizontal");
-        moveInput.y = Input.GetAxisRaw("Vertical");
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveZ = Input.GetAxisRaw("Vertical");
+        moveDirection = new Vector3(moveX, 0, moveZ).normalized;
+
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * rotateSpeed);
+        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            TryInteract();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            OpenBag();
+            if (currentInteractable != null)
+            {
+                currentInteractable.Interact();
+            }
         }
     }
 
     void FixedUpdate()
     {
-        Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
-        rb.velocity = new Vector3(moveDir.x * moveSpeed, rb.velocity.y, moveDir.z * moveSpeed);
+        rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
     }
 
-    void TryInteract()
+    private void OnTriggerEnter(Collider other)
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, interactRange))
+        InteractiveObjectBase obj = other.GetComponent<InteractiveObjectBase>();
+        if (obj != null)
         {
-            InteractableObj obj = hit.collider.GetComponent<InteractableObj>();
-
-            if (obj != null)
-            {
-                if (obj.requiredJob == myJob)
-                {
-                    obj.Interact();
-                }
-                else
-                {
-                    Debug.Log($"職業不符！你需要 {obj.requiredJob} 職業。");
-                }
-            }
+            currentInteractable = obj;
         }
     }
 
-    void OpenBag()
+    private void OnTriggerExit(Collider other)
     {
-        Debug.Log("打開背包介面");
+        InteractiveObjectBase obj = other.GetComponent<InteractiveObjectBase>();
+        if (obj != null && currentInteractable == obj)
+        {
+            currentInteractable = null;
+        }
+    }
 
+    public bool HasObjectType(ObjectType type)
+    {
+        return InventoryManager.Instance.items.Contains(type.ToString());
     }
 }
