@@ -21,7 +21,15 @@ public enum AccessoriesType
 /// </summary>
 public enum PropType
 {
-    None,  
+    None,
+    mushroom,
+    potato,
+    corn,
+    rawmeat,
+    mushroomsoup,
+    fries,
+    roastedcorn,
+    grilledporkchops
 }
 
 /// <summary>

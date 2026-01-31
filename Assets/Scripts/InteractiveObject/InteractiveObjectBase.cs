@@ -14,7 +14,8 @@ public enum InteractiveResultType
 {
     ShowMessage,
     GetObject,
-    OpenObstacle
+    OpenObstacle,
+    Cooking,
 }
 
 /// <summary>
@@ -37,9 +38,7 @@ public struct InteractiveResult
 {
     public InteractiveResultType resultType;
     public string message;
-    public MaskClass maskClass;
-    public AccessoriesType accessoriesType;
-    public PropType propType;
+    public InventoryItem getObject;
     public InteractObject actObject;
 }
 
@@ -91,13 +90,20 @@ public class InteractiveObjectBase : MonoBehaviour
                         canInteract = false;
                     }
                     break;
-                //case InteractiveConditionType.ObjectType:
+                case InteractiveConditionType.AccessoriesType:
 
-                //    if (!GameManager.Instance.Player.HasObjectType(condition.objectType))
-                //    {
-                //        canInteract = false;
-                //    }
-                //    break;
+                    if (!GameManager.Instance.HasItem(condition.accessoriesType.ToString()))
+                    {
+                        canInteract = false;
+                    }
+                    break;
+                case InteractiveConditionType.ObjectType:
+
+                    if (!GameManager.Instance.HasItem(condition.objectType.ToString()))
+                    {
+                        canInteract = false;
+                    }
+                    break;
                 case InteractiveConditionType.None:
                 default:
                     break;
@@ -108,19 +114,17 @@ public class InteractiveObjectBase : MonoBehaviour
             }
         }
 
-        if(!canInteract)
+        if (!canInteract)
         {
-            Debug.Log($"[Interactive] Fail");
             ProcessInteractiveResult(ref interactiveFailResults);
             return;
         }
 
-        Debug.Log($"[Interactive] Success");
         ProcessInteractiveResult(ref interactiveSuccessResults);
 
         if (CloseIfSuccess)
         {
-           gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 
@@ -141,13 +145,22 @@ public class InteractiveObjectBase : MonoBehaviour
             {
                 case InteractiveResultType.ShowMessage:
                     GameManager.Instance.ShowTextBubble(showMessageAnchor, result.message);
-                    Debug.Log($"[Interactive] {result.message}");
                     break;
                 case InteractiveResultType.GetObject:
+                    GameManager.Instance.AddItem(result.getObject);
                     break;
                 case InteractiveResultType.OpenObstacle:
-                    Debug.Log("[Interactive] Obstacle opened.");
                     result.actObject.SetState(true);
+                    break;
+                case InteractiveResultType.Cooking:
+                    for(PropType prop = PropType.mushroom; prop <= PropType.rawmeat; prop++)
+                    {
+                        if (GameManager.Instance.HasItem(prop.ToString()))
+                        {
+                            GameManager.Instance.RemoveItem(prop.ToString());
+                            GameManager.Instance.AddItem(result.getObject);
+                        }
+                    }
                     break;
             }
         }
