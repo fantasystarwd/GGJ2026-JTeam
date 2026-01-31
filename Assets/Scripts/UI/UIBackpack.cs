@@ -53,7 +53,7 @@ public class UIBackpack : MonoBehaviour
     private void Update()
     {
         NavigateSlot();
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(GameManager.KeyCodeBackpackUse))
         {
             OnButtonUseClicked();
         }

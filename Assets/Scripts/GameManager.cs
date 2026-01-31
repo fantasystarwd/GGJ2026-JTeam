@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public const KeyCode KeyCodeBackpack = KeyCode.B;
+    public const KeyCode KeyCodeBackpackUse = KeyCode.E;
 
     [SerializeField]
     private InventoryManager _inventoryManager;
