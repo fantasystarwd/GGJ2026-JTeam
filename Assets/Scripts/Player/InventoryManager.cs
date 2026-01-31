@@ -3,34 +3,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance;
-
     public List<InventoryItem> items = new List<InventoryItem>();
-    public GameObject inventoryUI;
-    public bool isOpen = false;
-
-    void Awake()
-    {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
-    }
-
-    void Start()
-    {
-        if (inventoryUI != null) inventoryUI.SetActive(false);
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q) && !isOpen)
-        {
-            OpenInventory();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isOpen)
-        {
-            CloseInventory();
-        }
-    }
 
     public void AddItem(InteractiveResult result)
     {
@@ -55,21 +28,5 @@ public class InventoryManager : MonoBehaviour
             items.Remove(toRemove);
             Debug.Log($"移除物品: {itemName}");
         }
-    }
-
-    public void OpenInventory()
-    {
-        isOpen = true;
-        if (inventoryUI != null) inventoryUI.SetActive(true);
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
-    public void CloseInventory()
-    {
-        isOpen = false;
-        if (inventoryUI != null) inventoryUI.SetActive(false);
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 }

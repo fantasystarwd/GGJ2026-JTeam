@@ -10,6 +10,8 @@ public class UIBackpack : MonoBehaviour
     [SerializeField]
     private Button _buttonClose;
     [SerializeField]
+    private IconDataTable _iconDataTable;
+    [SerializeField]
     private List<UIBackpackSlot> _slots;
 
     private void Start()
@@ -41,5 +43,32 @@ public class UIBackpack : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    public void SetItems(IReadOnlyList<InventoryItem> items)
+    {
+        for (var i = 0; i < items.Count; i++)
+        {
+            string itemKey = items[i].GetItemID();
+            if (string.IsNullOrEmpty(itemKey))
+            {
+                _slots[i].SetIcon(null);
+                continue;
+            }
+
+            if (itemKey == "Unknown")
+            {
+                _slots[i].SetIcon(null);
+                continue;
+            }
+
+            Sprite icon = _iconDataTable.GetIcon(itemKey);
+            _slots[i].SetIcon(icon);
+        }
+
+        for (var i = items.Count; i < _slots.Count; i++)
+        {
+            _slots[i].SetIcon(null);
+        }
     }
 }

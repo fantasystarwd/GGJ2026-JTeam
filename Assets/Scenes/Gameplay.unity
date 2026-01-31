@@ -898,6 +898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1677136878}
   - component: {fileID: 1677136877}
+  - component: {fileID: 1677136879}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -917,6 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ff51c10ad04694bbffccabb63b385f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inventoryManager: {fileID: 1677136879}
   _gameCamera: {fileID: 570958523}
   _uiCamera: {fileID: 642364402}
   _startPosition: {fileID: 1413143185}
@@ -940,6 +942,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1677136879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677136876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ca53e7bb6c84f46a43d07fcce201cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  inventoryUI: {fileID: 0}
+  isOpen: 0
 --- !u!224 &1736795219 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 547393179590823290, guid: 46c4932af8f580541b0c27de8991a710, type: 3}

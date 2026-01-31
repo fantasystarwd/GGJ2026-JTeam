@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonClose: {fileID: 837657536180776555}
+  _iconDataTable: {fileID: 11400000, guid: f6e86e80adbeb044b885d525350019c1, type: 2}
   _slots:
   - {fileID: 5287652117775113072}
   - {fileID: 7799787957486363241}

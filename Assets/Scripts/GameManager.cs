@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public const KeyCode KeyCodeBackpack = KeyCode.B;
 
     [SerializeField]
+    private InventoryManager _inventoryManager;
+    [SerializeField]
     private Camera _gameCamera;
     [SerializeField]
     private Camera _uiCamera;
@@ -115,6 +117,7 @@ public class GameManager : MonoBehaviour
     private void OpenUIBackpack()
     {
         _uiMain.Hide();
+        _uiBackpack.SetItems(_inventoryManager.items);
         _uiBackpack.Show();
     }
 
@@ -122,6 +125,16 @@ public class GameManager : MonoBehaviour
     {
         _uiMain.Show();
         _uiBackpack.Hide();
+    }
+
+    public void AddItem(InteractiveResult result)
+    {
+        _inventoryManager.AddItem(result);
+    }
+
+    public void RemoveItem(string itemName)
+    {
+        _inventoryManager.RemoveItem(itemName);
     }
 
     public void ShowTextBubble(Transform pivot, string text)
