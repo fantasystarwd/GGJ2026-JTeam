@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (currentInteractable != null)
             {
-                currentInteractable.Interact();
+                currentInteractable.Interact(this);
             }
         }
     }
