@@ -10,18 +10,10 @@ public class InventoryManager : MonoBehaviour
         return items.Exists(x => x.GetItemID() == itemName);
     }
 
-    public void AddItem(InteractiveResult result)
+    public void AddItem(InventoryItem result)
     {
-        InventoryItem newItem = new InventoryItem
-        {
-            itemType = result.resultType,
-            maskClass = result.maskClass,
-            accessoriesType = result.accessoriesType,
-            propType = result.propType
-        };
-
-        items.Add(newItem);
-        Debug.Log($"獲得物品: {newItem.GetItemID()}。目前數量: {items.Count}");
+        items.Add(result);
+        Debug.Log($"獲得物品: {result.GetItemID()}。目前數量: {items.Count}");
     }
 
     public void RemoveItem(string itemName)

@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         return _inventoryManager.HasItem(itemName);
     }
 
-    public void AddItem(InteractiveResult result)
+    public void AddItem(InventoryItem result)
     {
         _inventoryManager.AddItem(result);
     }

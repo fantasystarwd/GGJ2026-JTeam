@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public struct InventoryItem
 {
-    public InteractiveResultType itemType;
+    public InteractiveConditionType itemType;
     public MaskClass maskClass;
     public AccessoriesType accessoriesType;
     public PropType propType;
@@ -12,13 +12,14 @@ public struct InventoryItem
     {
         switch (itemType)
         {
-            case InteractiveResultType.GetObject: 
+            case InteractiveConditionType.MaskClass: 
+                return maskClass.ToString();
+            case InteractiveConditionType.AccessoriesType:
+                return accessoriesType.ToString();
+            case InteractiveConditionType.ObjectType:
                 return propType.ToString();
-            case InteractiveResultType.ShowMessage: 
-                if (maskClass != MaskClass.None) return maskClass.ToString();
-                if (accessoriesType != AccessoriesType.None) return accessoriesType.ToString();
-                break;
+            default:
+                return "Unknown";
         }
-        return "Unknown";
     }
 }
