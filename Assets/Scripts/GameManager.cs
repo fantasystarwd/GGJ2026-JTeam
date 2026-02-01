@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform _startPosition;
     [SerializeField]
-    private Transform _player;
+    private PlayerMovement _player;
     [SerializeField]
     private UIScreenFader _uiScreenFader;
     [SerializeField]
@@ -52,6 +52,10 @@ public class GameManager : MonoBehaviour
             return;
         }
         _instance = this;
+        if (_player == null)
+        {
+            _player = FindObjectOfType<PlayerMovement>();
+        }
     }
 
     private void OnDestroy()
@@ -74,7 +78,7 @@ public class GameManager : MonoBehaviour
         _uiMain.Show();
         _uiBackpack.Hide();
 
-        _isRunning = true;
+        ResumeGame();
         _healthCurrent = _healthMax;
     }
 
@@ -109,6 +113,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PauseGame()
+    {
+        _isRunning = false;
+        _player.DisabledMovement(true);
+    }
+
+    public void ResumeGame()
+    {
+        _isRunning = true;
+        _player.DisabledMovement(false);
+    }
+
     public void OnTimeReset()
     {
         TimeResetAsync(this.GetCancellationTokenOnDestroy()).Forget();
@@ -116,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     private async UniTaskVoid TimeResetAsync(CancellationToken cancellationToken)
     {
-        _isRunning = false;
+        PauseGame();
 
         await _uiScreenFader.FadeOutAsync(1.0f, cancellationToken);
         if (cancellationToken.IsCancellationRequested)
@@ -125,8 +141,11 @@ public class GameManager : MonoBehaviour
         }
 
         // Reset player position
-        _player.position = new Vector3(
-            _startPosition.position.x, _startPosition.position.y, _player.position.z);
+        if (_player != null && _startPosition != null)
+        {
+            _player.transform.position = new Vector3(
+                _startPosition.position.x, _startPosition.position.y, _player.transform.position.z);
+        }
 
         // Reset backpack
         // Reset hp
@@ -139,12 +158,12 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        _isRunning = true;
+        ResumeGame();
     }
 
     private void OpenUIBackpack()
     {
-        _isRunning = false;
+        PauseGame();
         _uiMain.Hide();
         RefreshUIBackpack();
         _uiBackpack.SelectSlotIndex(0);
@@ -153,7 +172,7 @@ public class GameManager : MonoBehaviour
 
     private void CloseUIBackpack()
     {
-        _isRunning = true;
+        ResumeGame();
         _uiMain.Show();
         _uiBackpack.Hide();
     }
@@ -199,12 +218,43 @@ public class GameManager : MonoBehaviour
 
     public void ChangeLevel(GameObject levelRoot, Vector3 playerStartPosition)
     {
+        ChangeLevelAsync(levelRoot, playerStartPosition, this.GetCancellationTokenOnDestroy()).Forget();
+    }
+
+    private async UniTaskVoid ChangeLevelAsync(GameObject levelRoot,
+        Vector3 playerStartPosition, CancellationToken cancellationToken)
+    {
+        PauseGame();
+
+        await _uiScreenFader.FadeOutAsync(0.5f, cancellationToken);
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return;
+        }
+
+        // Switch level
         if (_levelRoot != null)
         {
             _levelRoot.SetActive(false);
         }
         _levelRoot = levelRoot;
-        _levelRoot.SetActive(true);
-        _player.position = playerStartPosition;
+        if (_levelRoot != null)
+        {
+            _levelRoot.SetActive(true);
+        }
+
+        // Reset player position
+        if (_player != null)
+        {
+            _player.transform.position = playerStartPosition;
+        }
+
+        await _uiScreenFader.FadeInAsync(0.5f, cancellationToken);
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return;
+        }
+
+        ResumeGame();
     }
 }
