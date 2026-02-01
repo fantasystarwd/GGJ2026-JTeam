@@ -671,7 +671,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 350, y: 179}
+  m_AnchoredPosition: {x: 350, y: 287}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1302995861
@@ -694,7 +694,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u79FB\u52D5: WASD\n\u62FE\u53D6: E\n\u80CC\u5305: B"
+  m_text: "\u79FB\u52D5: WASD\n\u62FE\u53D6: E\n\u80CC\u5305: B\n\u5FEB\u901F\u91CD\u7F6E:
+    T"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a731da105d9455f438f21a760c2150a7, type: 2}
   m_sharedMaterial: {fileID: -5699420690861800767, guid: a731da105d9455f438f21a760c2150a7, type: 2}
