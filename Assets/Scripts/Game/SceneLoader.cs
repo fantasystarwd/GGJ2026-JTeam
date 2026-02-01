@@ -17,12 +17,6 @@ public class SceneLoader : MonoBehaviour
     public void LoadNextScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
-        //0: Starting
-        //1: Tutorial
-        //2: AlphaShow
-        //3: SampleScene
-        //4: Gameplay
-        //5: Ending
     }
 
     public void ReloadScene()
