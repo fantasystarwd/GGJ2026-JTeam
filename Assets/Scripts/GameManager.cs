@@ -173,6 +173,9 @@ public class GameManager : MonoBehaviour
             Mathf.Max(0, _inventoryManager.gainedMasks.Count - 1) * _healthMaxPerMask;
         _healthCurrent = _healthMax;
 
+        // 強制更新UI
+        _uiMain.SetHealth(Mathf.CeilToInt(_healthCurrent), _healthMax);
+
         await _uiScreenFader.FadeInAsync(1.0f, cancellationToken);
         if (cancellationToken.IsCancellationRequested)
         {
