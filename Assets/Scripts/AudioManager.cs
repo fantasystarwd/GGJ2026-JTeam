@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(MusicType musicType)
     {
-        int index = (int)musicType;
+        int index = (int)musicType - 1;
         if (index >= _musicClips.Length)
         {
             Debug.LogWarning("MusicType index out of range: " + index);
@@ -70,8 +70,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(SoundEffectType sfxType)
     {
-        int index = (int)sfxType;
-        if(index >= _audioClips.Length)
+        int index = (int)sfxType - 1;
+        if (index >= _audioClips.Length)
         {
             Debug.LogWarning("SoundEffectType index out of range: " + index);
             return;
