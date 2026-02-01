@@ -16,6 +16,7 @@ public enum InteractiveResultType
     OpenObstacle,
     Cooking,
     ChangeLevel,
+    PlaySoundEffect,
 }
 
 /// <summary>
@@ -52,6 +53,7 @@ public struct InteractiveResult
     public InventoryItem getObject;
     public InteractObject actObject;
     public ChangeLevelInfo changeLevelInfo;
+    public SoundEffectType soundEffectType;
 }
 
 public class InteractiveObjectBase : MonoBehaviour
@@ -211,6 +213,9 @@ public class InteractiveObjectBase : MonoBehaviour
                     break;
                 case InteractiveResultType.ChangeLevel:
                     GameManager.Instance.ChangeLevel(result.changeLevelInfo.levelRoot, result.changeLevelInfo.playerStartPosition.position);
+                    break;
+                case InteractiveResultType.PlaySoundEffect:
+                    AudioManager.Instance.PlaySFX(result.soundEffectType);
                     break;
             }
         }
