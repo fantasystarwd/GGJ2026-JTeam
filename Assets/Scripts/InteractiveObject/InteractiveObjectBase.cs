@@ -88,6 +88,11 @@ public class InteractiveObjectBase : MonoBehaviour
     private bool CloseIfSuccess = false;
 
     /// <summary>
+    /// 是否以觸發過了
+    /// </summary>
+    private bool isInteracted = false;
+
+    /// <summary>
     /// 顯示訊息茅點設定
     /// </summary>
     private Transform showMessageAnchor;
@@ -124,6 +129,10 @@ public class InteractiveObjectBase : MonoBehaviour
     /// </summary>
     public void Interact(PlayerMovement player)
     {
+        if (CloseIfSuccess && isInteracted)
+        {
+            return;
+        }
         // 條件判斷
         bool canInteract = true;
         foreach (var condition in interactiveConditions)
@@ -171,6 +180,7 @@ public class InteractiveObjectBase : MonoBehaviour
         if (CloseIfSuccess)
         {
             gameObject.SetActive(false);
+            isInteracted = true;
         }
     }
 
