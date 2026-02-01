@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class SceneLoader : MonoBehaviour
 {
+
     private int buildIndex;
     private void Start()
     {
@@ -12,10 +14,17 @@ public class SceneLoader : MonoBehaviour
         buildIndex = currentScene.buildIndex;
     }
 
-    public void LoadNextScene(int nextSceneIndex)
+    public void LoadNextScene(int sceneIndex)
     {
-        SceneManager.LoadScene(nextSceneIndex);
+        SceneManager.LoadScene(sceneIndex);
+        //0: Starting
+        //1: Tutorial
+        //2: AlphaShow
+        //3: SampleScene
+        //4: Gameplay
+        //5: Ending
     }
+
     public void ReloadScene()
     {
         SceneManager.LoadScene(buildIndex);
