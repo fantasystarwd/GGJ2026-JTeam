@@ -478,7 +478,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2596326185860390644}
   - component: {fileID: 7421178364327220750}
-  - component: {fileID: 6404855581880769697}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -513,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ff51c10ad04694bbffccabb63b385f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryManager: {fileID: 6404855581880769697}
+  _inventoryManager: {fileID: 0}
   _itemDataTable: {fileID: 11400000, guid: 82372362851094d4aa0f7c756c3172dd, type: 2}
   _gameCamera: {fileID: 9003887848362962906}
   _uiCamera: {fileID: 6259514251428897591}
@@ -528,19 +527,6 @@ MonoBehaviour:
   _healthCurrent: 0
   _healthMax: 180
   _costPerSecond: 1
---- !u!114 &6404855581880769697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7606092747293472384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43ca53e7bb6c84f46a43d07fcce201cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
 --- !u!1001 &947378467756173080
 PrefabInstance:
   m_ObjectHideFlags: 0

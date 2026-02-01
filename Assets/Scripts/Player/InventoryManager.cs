@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    public int round = 1;
+    public List<string> gainedMasks = new();
     public List<InventoryItem> items = new();
 
     public bool HasItem(string itemName)
