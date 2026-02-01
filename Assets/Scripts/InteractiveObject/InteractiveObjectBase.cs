@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum InteractiveConditionType
 {
@@ -17,6 +18,7 @@ public enum InteractiveResultType
     Cooking,
     ChangeLevel,
     PlaySoundEffect,
+    WinGame,
 }
 
 /// <summary>
@@ -226,6 +228,9 @@ public class InteractiveObjectBase : MonoBehaviour
                     break;
                 case InteractiveResultType.PlaySoundEffect:
                     AudioManager.Instance.PlaySFX(result.soundEffectType);
+                    break;
+                case InteractiveResultType.WinGame:
+                    SceneManager.LoadScene(6);
                     break;
             }
         }
