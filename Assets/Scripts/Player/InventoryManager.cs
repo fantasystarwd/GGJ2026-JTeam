@@ -15,14 +15,6 @@ public class InventoryManager : MonoBehaviour
         return gainedMasks.Contains(id);
     }
 
-    public void GainMask(string id)
-    {
-        if (!gainedMasks.Contains(id))
-        {
-            gainedMasks.Add(id);
-        }
-    }
-
     public bool HasItem(string itemName)
     {
         return items.Exists(x => x.GetItemID() == itemName);

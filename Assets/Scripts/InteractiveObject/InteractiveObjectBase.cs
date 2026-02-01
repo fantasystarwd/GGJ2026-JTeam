@@ -191,7 +191,7 @@ public class InteractiveObjectBase : MonoBehaviour
                     GameManager.Instance.ShowTextBubble(showMessageAnchor, result.message);
                     break;
                 case InteractiveResultType.WearMask:
-                    GameManager.Instance.GainMask(result.getObject.maskClass);
+                    player.ChangeMask(result.getObject.maskClass);
                     break;
                 case InteractiveResultType.GetObject:
                     GameManager.Instance.AddItem(result.getObject);
