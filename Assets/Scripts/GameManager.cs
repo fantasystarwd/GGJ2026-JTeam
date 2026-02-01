@@ -38,7 +38,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float _healthCurrent;
     [SerializeField]
-    private int _healthMax = 180;
+    private int _healthMax;
+    [SerializeField]
+    private int _healthMaxBase = 30;
+    [SerializeField]
+    private int _healthMaxPerMask = 30;
     [SerializeField]
     private float _costPerSecond = 1f;
 
@@ -88,8 +92,6 @@ public class GameManager : MonoBehaviour
         _uiTextBubble.ForceHide();
         _uiMain.Show();
         _uiBackpack.Hide();
-
-        _healthCurrent = _healthMax;
         SetupNewRoundAsync(this.GetCancellationTokenOnDestroy()).Forget();
     }
 
@@ -161,6 +163,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        // 最大血量隨面具數量增加
+        _healthMax = _healthMaxBase +
+            Mathf.Max(0, _inventoryManager.gainedMasks.Count - 1) * _healthMaxPerMask;
+        _healthCurrent = _healthMax;
 
         await _uiScreenFader.FadeInAsync(1.0f, cancellationToken);
         if (cancellationToken.IsCancellationRequested)

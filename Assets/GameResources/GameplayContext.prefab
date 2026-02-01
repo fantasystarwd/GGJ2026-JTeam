@@ -525,7 +525,9 @@ MonoBehaviour:
   _uiBackpack: {fileID: 8281641931169726460}
   _isRunning: 0
   _healthCurrent: 0
-  _healthMax: 180
+  _healthMax: 0
+  _healthMaxBase: 30
+  _healthMaxPerMask: 30
   _costPerSecond: 1
 --- !u!1001 &947378467756173080
 PrefabInstance:
