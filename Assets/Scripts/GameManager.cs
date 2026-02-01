@@ -97,6 +97,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            OnTimeReset();
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCodeBackpack))
         {
             if (_uiBackpack.gameObject.activeSelf)
