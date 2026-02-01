@@ -13,8 +13,113 @@ MonoBehaviour:
   m_Name: ItemDataTable
   m_EditorClassIdentifier: 
   _dataList:
-  - id: potato
+  - id: Mask-White
     name: Potato
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Mask-Cook
+    name: Cook
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Mask-Thief
+    name: Thief
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Mask-Artisan
+    name: Artisan
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Mask-Wrestler
+    name: Wrestler
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Mask-Scholar
+    name: Scholar
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Mask-Prism
+    name: Prism
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Mask-oxygenMask
+    name: oxygenMask
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Mask-StoneMask
+    name: StoneMask
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Mask-MemoryMask
+    name: MemoryMask
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Accessories-Glassbead
+    name: Glassbead
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Accessories-Feather
+    name: Feather
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Accessories-Icecrystal
+    name: Icecrystal
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Accessories-Pyroxene
+    name: Pyroxene
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Prop-mushroom
+    name: mushroom
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Prop-potato
+    name: potato
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Prop-corn
+    name: corn
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Prop-rawmeat
+    name: rawmeat
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Prop-mushroomsoup
+    name: mushroomsoup
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Prop-fries
+    name: fries
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Prop-roastedcorn
+    name: roastedcorn
+    icon: {fileID: 0}
+    value: 0
+    isUsable: 0
+  - id: Prop-grilledporkchops
+    name: grilledporkchops
     icon: {fileID: 0}
     value: 0
     isUsable: 0
