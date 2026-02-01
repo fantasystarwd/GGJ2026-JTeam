@@ -272,6 +272,11 @@ public class GameManager : MonoBehaviour
         _levelRoot = levelRoot;
         if (_levelRoot != null)
         {
+            // Note: Game space is on xz-plane
+            _gameCamera.transform.position = new Vector3(
+                _levelRoot.transform.position.x,
+                _gameCamera.transform.position.y,
+                _levelRoot.transform.position.z);
             _levelRoot.SetActive(true);
         }
 
