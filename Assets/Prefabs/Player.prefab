@@ -627,7 +627,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.52}
-  m_Center: {x: 0, y: 0, z: 0.76}
+  m_Center: {x: 0, y: 0, z: 0.9}
 --- !u!54 &3760946936958638883
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -681,20 +681,18 @@ MonoBehaviour:
     modelObject: {fileID: 1437714285427637011}
   - type: 3
     modelObject: {fileID: 549634906739229793}
-  - type: 4
-    modelObject: {fileID: 6536642136441629291}
   - type: 5
-    modelObject: {fileID: 549634906739229793}
+    modelObject: {fileID: 6536642136441629291}
   - type: 6
-    modelObject: {fileID: 549634906739229793}
+    modelObject: {fileID: 2550215397471704754}
   - type: 7
-    modelObject: {fileID: 549634906739229793}
+    modelObject: {fileID: 6820214154394199852}
   - type: 8
-    modelObject: {fileID: 549634906739229793}
+    modelObject: {fileID: 8629150984226680402}
   - type: 9
-    modelObject: {fileID: 549634906739229793}
+    modelObject: {fileID: 4383490148151485527}
   - type: 10
-    modelObject: {fileID: 549634906739229793}
+    modelObject: {fileID: 1681847239757632209}
   accessoryModels:
   - type: 1
     modelObject: {fileID: 7196911241491291949}
