@@ -148,6 +148,10 @@ public class GameManager : MonoBehaviour
     {
         PauseGame();
         _uiScreenFader.ForceFadeOut();
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic(MusicType.Game);
+        }
 
         // Reset start level
         // 已經獲得的面具，在初始房間內會出現
@@ -194,6 +198,17 @@ public class GameManager : MonoBehaviour
     {
         PauseGame();
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopMusic();
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(SoundEffectType.Fail_1);
+            AudioManager.Instance.PlaySFX(SoundEffectType.Fail_2);
+        }
+
         await _uiScreenFader.FadeOutAsync(1.0f, cancellationToken);
         if (cancellationToken.IsCancellationRequested)
         {
@@ -206,6 +221,12 @@ public class GameManager : MonoBehaviour
     private void OpenUIBackpack()
     {
         PauseGame();
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(SoundEffectType.Button);
+        }
+
         _uiMain.Hide();
         RefreshUIBackpack();
         _uiBackpack.SelectSlotIndex(0);
@@ -215,6 +236,12 @@ public class GameManager : MonoBehaviour
     private void CloseUIBackpack()
     {
         ResumeGame();
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(SoundEffectType.Button);
+        }
+
         _uiMain.Show();
         _uiBackpack.Hide();
     }
@@ -250,6 +277,11 @@ public class GameManager : MonoBehaviour
 
         RefreshUIBackpack();
         _uiBackpack.SelectSlotIndex(index);
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(SoundEffectType.Eat);
+        }
     }
 
     private bool UseItemInternal(int index)

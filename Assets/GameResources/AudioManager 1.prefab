@@ -48,6 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSource: {fileID: 5729770967999490679}
   _sfxSource: {fileID: 5752396312397837961}
+  _musicClips:
+  - {fileID: 8300000, guid: 63c10c36c49e08b4e9544449d0d41352, type: 3}
+  - {fileID: 8300000, guid: 0ef5fc4670beb2f4d8cd3661e3ac9516, type: 3}
+  - {fileID: 8300000, guid: dcdd145f11dd3294dab1b9cc54d7cd98, type: 3}
   _audioClips:
   - {fileID: 8300000, guid: 8406e0a7e1d1b8e4b83f19acbffb4181, type: 3}
   - {fileID: 8300000, guid: 28c1ba504d26df748a3e911ec6768e74, type: 3}

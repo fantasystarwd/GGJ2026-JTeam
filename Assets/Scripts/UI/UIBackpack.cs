@@ -187,5 +187,10 @@ public class UIBackpack : MonoBehaviour
         {
             SelectSlotIndex(_selectedSlotIndex);
         }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(SoundEffectType.Button);
+        }
     }
 }

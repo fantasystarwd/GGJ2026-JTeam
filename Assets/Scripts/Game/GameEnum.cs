@@ -55,6 +55,14 @@ public enum ObjectType
     Prop, // 道具
 }
 
+public enum MusicType
+{
+    None = 0,
+    Title,
+    Game,
+    Win,
+}
+
 public enum SoundEffectType
 {
     None = 0,

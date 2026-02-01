@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource _sfxSource;
     [SerializeField]
+    private AudioClip[] _musicClips;
+    [SerializeField]
     private AudioClip[] _audioClips;
 
     public static AudioManager Instance { get; private set; }
@@ -29,6 +31,24 @@ public class AudioManager : MonoBehaviour
         {
             Instance = null;
         }
+    }
+
+    public void PlayMusic(MusicType musicType)
+    {
+        int index = (int)musicType;
+        if (index >= _musicClips.Length)
+        {
+            Debug.LogWarning("MusicType index out of range: " + index);
+            return;
+        }
+
+        if (_musicClips[index] == null)
+        {
+            Debug.LogWarning("AudioClip not assigned for MusicType: " + musicType);
+            return;
+        }
+
+        PlayMusic(_musicClips[index], true);
     }
 
     public void PlayMusic(AudioClip clip, bool loop = true)
