@@ -8,11 +8,22 @@ public struct InventoryItem
     public AccessoriesType accessoriesType;
     public PropType propType;
 
+    public readonly string GetTypeId()
+    {
+        return itemType switch
+        {
+            InteractiveConditionType.MaskClass => "Mask",
+            InteractiveConditionType.AccessoriesType => "Accessories",
+            InteractiveConditionType.ObjectType => "Prop",
+            _ => "",
+        };
+    }
+
     public string GetItemID()
     {
         switch (itemType)
         {
-            case InteractiveConditionType.MaskClass: 
+            case InteractiveConditionType.MaskClass:
                 return maskClass.ToString();
             case InteractiveConditionType.AccessoriesType:
                 return accessoriesType.ToString();

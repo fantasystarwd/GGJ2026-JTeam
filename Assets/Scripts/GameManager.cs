@@ -253,11 +253,11 @@ public class GameManager : MonoBehaviour
         }
 
         InventoryItem itemToUse = _inventoryManager.items[index];
-        string itemId = itemToUse.GetItemID();
-        ItemData itemData = _itemDataTable.GetData(itemId);
+        string itemDataId = $"{itemToUse.GetTypeId()}-{itemToUse.GetItemID()}";
+        ItemData itemData = _itemDataTable.GetData(itemDataId);
         if (itemData == null)
         {
-            Debug.LogWarning($"找不到物品資料: {itemId}");
+            Debug.LogWarning($"找不到物品資料: {itemDataId}");
             return false;
         }
 

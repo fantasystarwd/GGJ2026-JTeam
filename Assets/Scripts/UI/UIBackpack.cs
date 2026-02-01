@@ -81,15 +81,16 @@ public class UIBackpack : MonoBehaviour
 
         for (var i = 0; i < items.Count; i++)
         {
-            string itemKey = items[i].GetItemID();
-            if (string.IsNullOrEmpty(itemKey))
+            string itemId = items[i].GetItemID();
+            if (string.IsNullOrEmpty(itemId))
             {
                 _slots[i].SetIcon(null);
                 _slots[i].ShowIcon();
                 continue;
             }
 
-            ItemData data = _itemDataTable.GetData(itemKey);
+            string itemDataId = $"{items[i].GetTypeId()}-{itemId}";
+            ItemData data = _itemDataTable.GetData(itemDataId);
             if (data == null)
             {
                 _slots[i].SetIcon(null);
