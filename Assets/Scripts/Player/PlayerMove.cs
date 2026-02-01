@@ -94,6 +94,10 @@ public class PlayerMovement : MonoBehaviour
     //切換面具
     public void ChangeMask(MaskClass newMask)
     {
+        if (myCurrentMask != newMask)
+        {
+            myCurrentMask = MaskClass.None;
+        }
         myCurrentMask = newMask;
 
         foreach (var map in maskModels)
@@ -107,8 +111,13 @@ public class PlayerMovement : MonoBehaviour
     //切換飾品
     public void ChangeAccessory(AccessoriesType newAccessory)
     {
+        if (myCurrentAccessory != newAccessory)
+        {
+            myCurrentAccessory = AccessoriesType.None;
+        }
         myCurrentAccessory = newAccessory;
 
+        
         foreach (var map in accessoryModels)
         {
             if (map.modelObject != null)
