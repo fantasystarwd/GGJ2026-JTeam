@@ -16,6 +16,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadNextScene(int sceneIndex)
     {
+        AudioManager.Instance.PlaySFX(SoundEffectType.Button);
         SceneManager.LoadScene(sceneIndex);
     }
 
