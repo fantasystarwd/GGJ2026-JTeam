@@ -7,8 +7,13 @@ using UnityEngine.SceneManagement;
 public class InventoryManager : MonoBehaviour
 {
     public int round = 1;
-    public List<string> gainedMasks = new();
+    public List<string> gainedMasks = new() { "White" };
     public List<InventoryItem> items = new();
+
+    public bool HasMask(string id)
+    {
+        return gainedMasks.Contains(id);
+    }
 
     public bool HasItem(string itemName)
     {

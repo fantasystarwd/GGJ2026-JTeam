@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum InteractiveConditionType
@@ -91,6 +89,19 @@ public class InteractiveObjectBase : MonoBehaviour
     /// 顯示訊息茅點設定
     /// </summary>
     private Transform showMessageAnchor;
+
+    public string GetMaskIdIfAble()
+    {
+        for (var i = 0; i < interactiveSuccessResults.Length; i++)
+        {
+            if (interactiveSuccessResults[i].resultType == InteractiveResultType.WearMask)
+            {
+                return interactiveSuccessResults[i].getObject.maskClass.ToString();
+            }
+        }
+
+        return "";
+    }
 
     /// <summary>
     /// 玩家一進入這個觸發就會判斷是否能直接互動

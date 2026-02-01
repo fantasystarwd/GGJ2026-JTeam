@@ -143,6 +143,24 @@ public class GameManager : MonoBehaviour
 
         // Reset start level
         // 已經獲得的面具，在初始房間內會出現
+        if (_levelRoot != null)
+        {
+            InteractiveObjectBase[] allInteractiveObjects = _levelRoot.GetComponentsInChildren<InteractiveObjectBase>(true);
+            for (var i = 0; i < allInteractiveObjects.Length; i++)
+            {
+                InteractiveObjectBase interactiveObject = allInteractiveObjects[i];
+                string maskId = interactiveObject.GetMaskIdIfAble();
+                if (string.IsNullOrEmpty(maskId))
+                {
+                    continue;
+                }
+
+                if (!_inventoryManager.HasMask(maskId))
+                {
+                    interactiveObject.gameObject.SetActive(false);
+                }
+            }
+        }
 
         await _uiScreenFader.FadeInAsync(1.0f, cancellationToken);
         if (cancellationToken.IsCancellationRequested)
