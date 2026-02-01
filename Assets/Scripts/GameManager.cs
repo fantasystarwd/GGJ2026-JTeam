@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private InventoryManager _inventoryManager;
     [SerializeField]
+    private ItemDataTable _itemDataTable;
+    [SerializeField]
     private Camera _gameCamera;
     [SerializeField]
     private Camera _uiCamera;
@@ -200,15 +202,45 @@ public class GameManager : MonoBehaviour
 
     public void UseItem(int index)
     {
-        if (index < 0 || index >= _inventoryManager.items.Count)
+        bool success = UseItemInternal(index);
+        if (!success)
         {
             return;
         }
 
-        Debug.Log($"Use item at index {index}");
-        //_inventoryManager.UseItem(index);
         RefreshUIBackpack();
         _uiBackpack.SelectSlotIndex(index);
+    }
+
+    private bool UseItemInternal(int index)
+    {
+        if (index < 0 || index >= _inventoryManager.items.Count)
+        {
+            return false;
+        }
+
+        InventoryItem itemToUse = _inventoryManager.items[index];
+        string itemId = itemToUse.GetItemID();
+        ItemData itemData = _itemDataTable.GetData(itemId);
+        if (itemData == null)
+        {
+            Debug.LogWarning($"找不到物品資料: {itemId}");
+            return false;
+        }
+
+        if (!itemData.isUsable)
+        {
+            return false;
+        }
+
+        _healthCurrent += itemData.value;
+        if (_healthCurrent > _healthMax)
+        {
+            _healthCurrent = _healthMax;
+        }
+
+        _inventoryManager.RemoveItemAtIndex(index);
+        return true;
     }
 
     public void ShowTextBubble(Transform pivot, string text)

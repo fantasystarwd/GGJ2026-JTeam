@@ -26,4 +26,15 @@ public class InventoryManager : MonoBehaviour
             Debug.Log($"移除物品: {itemName}");
         }
     }
+
+    public void RemoveItemAtIndex(int index)
+    {
+        if (index < 0 || index >= items.Count)
+        {
+            Debug.LogWarning($"無效的物品索引: {index}");
+            return;
+        }
+
+        items.RemoveAt(index);
+    }
 }
