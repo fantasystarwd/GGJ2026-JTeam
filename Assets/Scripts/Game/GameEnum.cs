@@ -54,3 +54,16 @@ public enum ObjectType
     accessories, // 飾品
     Prop, // 道具
 }
+
+public enum SoundEffectType
+{
+    None = 0,
+    Button,
+    Cook,
+    Door,
+    Eat,
+    Fail_1,
+    Fail_2,
+    Get_iten,
+    Hungry,
+}

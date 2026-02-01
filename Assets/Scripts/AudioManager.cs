@@ -6,6 +6,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource _musicSource;
     [SerializeField]
     private AudioSource _sfxSource;
+    [SerializeField]
+    private AudioClip[] _audioClips;
 
     public static AudioManager Instance { get; private set; }
 
@@ -44,5 +46,23 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         _sfxSource.PlayOneShot(clip);
+    }
+
+    public void PlaySFX(SoundEffectType sfxType)
+    {
+        int index = (int)sfxType;
+        if(index >= _audioClips.Length)
+        {
+            Debug.LogWarning("SoundEffectType index out of range: " + index);
+            return;
+        }
+
+        if (_audioClips[index] == null)
+        {
+            Debug.LogWarning("AudioClip not assigned for SoundEffectType: " + sfxType);
+            return;
+        }
+
+        _sfxSource.PlayOneShot(_audioClips[index]);
     }
 }
