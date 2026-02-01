@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4710056380273885898}
   - component: {fileID: 7955312179508266604}
-  - component: {fileID: 1351270964670313096}
+  - component: {fileID: 8198499419908389293}
   m_Layer: 0
   m_Name: Thief
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1351270964670313096
+--- !u!65 &8198499419908389293
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,5 +104,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

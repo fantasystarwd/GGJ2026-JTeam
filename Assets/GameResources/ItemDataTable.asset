@@ -14,53 +14,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dataList:
   - id: Mask-White
-    name: Potato
-    icon: {fileID: 0}
+    name: White
+    icon: {fileID: 21300000, guid: 268f254bedc93fc4b9557e5ae4e18a5c, type: 3}
     value: 0
     isUsable: 0
   - id: Mask-Cook
     name: Cook
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 663b23302a5b13c4c8d09e449b9c547b, type: 3}
     value: 0
     isUsable: 0
   - id: Mask-Thief
     name: Thief
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: b7bc8501224feb94bbe30c72187ab9c0, type: 3}
     value: 0
     isUsable: 0
   - id: Mask-Artisan
     name: Artisan
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: eaa05fd3869e05d49b3719ca1c1bdc42, type: 3}
     value: 0
     isUsable: 0
   - id: Mask-Wrestler
     name: Wrestler
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 8810d8ec8ddfb484589dc5561637b09f, type: 3}
     value: 0
     isUsable: 0
   - id: Mask-Scholar
     name: Scholar
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 1d1c9bdfb1a9ca540ba492fc249ede5d, type: 3}
     value: 0
     isUsable: 0
   - id: Mask-Prism
     name: Prism
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 93a1426fd11985c4d8dc61a764625330, type: 3}
     value: 0
     isUsable: 0
   - id: Mask-oxygenMask
     name: oxygenMask
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: e2e93f741df945e4caff448a2d342037, type: 3}
     value: 0
     isUsable: 0
   - id: Mask-StoneMask
     name: StoneMask
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: b620f71c9d0ab40448eabcfcd8b8eb20, type: 3}
     value: 0
     isUsable: 0
   - id: Mask-MemoryMask
     name: MemoryMask
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: ef5d69c6fc6c4914fb09edb05af896c3, type: 3}
     value: 0
     isUsable: 0
   - id: Accessories-Glassbead
