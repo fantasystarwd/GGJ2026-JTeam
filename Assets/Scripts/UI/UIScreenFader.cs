@@ -7,6 +7,12 @@ public class UIScreenFader : MonoBehaviour
     [SerializeField]
     private CanvasGroup _canvasGroup;
 
+    public void ForceFadeOut()
+    {
+        _canvasGroup.alpha = 1f;
+        _canvasGroup.gameObject.SetActive(true);
+    }
+
     public void ForceFadeIn()
     {
         _canvasGroup.alpha = 0f;

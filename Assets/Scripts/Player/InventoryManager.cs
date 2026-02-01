@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -38,5 +41,48 @@ public class InventoryManager : MonoBehaviour
         }
 
         items.RemoveAt(index);
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
+    public void DoTimeReset()
+    {
+        TimeResetAsync(this.GetCancellationTokenOnDestroy()).Forget();
+    }
+
+    private async UniTaskVoid TimeResetAsync(CancellationToken cancellationToken)
+    {
+        // Save record
+        // 1. 輪數紀錄+1
+        round += 1;
+
+        // 2. 已經獲得的面具，要被記錄起來，在初始房間內會出現
+        for (var i = 0; i < items.Count; i++)
+        {
+            InventoryItem item = items[i];
+            if (item.itemType == InteractiveConditionType.MaskClass)
+            {
+                string itemId = item.GetItemID();
+                if (!gainedMasks.Contains(itemId))
+                {
+                    gainedMasks.Add(itemId);
+                }
+            }
+        }
+
+        // Reset backpack
+        // 面具不會保留在背包內。其他道具保留。
+        items.RemoveAll(x =>
+            x.itemType == InteractiveConditionType.MaskClass
+        );
+
+        await SceneManager.LoadSceneAsync("AlphaShow", LoadSceneMode.Single);
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return;
+        }
     }
 }

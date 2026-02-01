@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         _instance = this;
         if (_player == null)
         {
@@ -68,6 +69,10 @@ public class GameManager : MonoBehaviour
                 DontDestroyOnLoad(_inventoryManager);
             }
         }
+
+        _uiMain.ButtonBackpackClicked += OpenUIBackpack;
+        _uiBackpack.ButtonCloseClicked += CloseUIBackpack;
+        _uiBackpack.ButtonUseClicked += UseItem;
     }
 
     private void OnDestroy()
@@ -80,18 +85,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _uiMain.ButtonBackpackClicked += OpenUIBackpack;
-        _uiBackpack.ButtonCloseClicked += CloseUIBackpack;
-        _uiBackpack.ButtonUseClicked += UseItem;
-
-        _uiScreenFader.ForceFadeIn();
         _uiTextBubble.ForceHide();
-
         _uiMain.Show();
         _uiBackpack.Hide();
 
-        ResumeGame();
         _healthCurrent = _healthMax;
+        SetupNewRoundAsync(this.GetCancellationTokenOnDestroy()).Forget();
     }
 
     private void Update()
@@ -137,6 +136,23 @@ public class GameManager : MonoBehaviour
         _player.DisabledMovement(false);
     }
 
+    private async UniTask SetupNewRoundAsync(CancellationToken cancellationToken)
+    {
+        PauseGame();
+        _uiScreenFader.ForceFadeOut();
+
+        // Reset start level
+        // 已經獲得的面具，在初始房間內會出現
+
+        await _uiScreenFader.FadeInAsync(1.0f, cancellationToken);
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return;
+        }
+
+        ResumeGame();
+    }
+
     public void OnTimeReset()
     {
         TimeResetAsync(this.GetCancellationTokenOnDestroy()).Forget();
@@ -152,50 +168,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // Save record
-        // 1. 輪數紀錄+1
-        _inventoryManager.round += 1;
-
-        // 2. 已經獲得的面具，要被記錄起來，在初始房間內會出現
-        for (var i = 0; i < _inventoryManager.items.Count; i++)
-        {
-            InventoryItem item = _inventoryManager.items[i];
-            if (item.itemType == InteractiveConditionType.MaskClass)
-            {
-                string itemId = item.GetItemID();
-                if (!_inventoryManager.gainedMasks.Contains(itemId))
-                {
-                    _inventoryManager.gainedMasks.Add(itemId);
-                }
-            }
-        }
-
-        // Reset start level
-        // 已經獲得的面具，在初始房間內會出現
-
-        // Reset player position
-        if (_player != null && _startPosition != null)
-        {
-            _player.transform.position = new Vector3(
-                _startPosition.position.x, _startPosition.position.y, _player.transform.position.z);
-        }
-
-        // Reset backpack
-        // 面具不會保留在背包內。其他道具保留。
-        _inventoryManager.items.RemoveAll(x =>
-            x.itemType == InteractiveConditionType.MaskClass
-        );
-
-        // Reset hp
-        _healthCurrent = _healthMax;
-
-        await _uiScreenFader.FadeInAsync(1.0f, cancellationToken);
-        if (cancellationToken.IsCancellationRequested)
-        {
-            return;
-        }
-
-        ResumeGame();
+        _inventoryManager.DoTimeReset();
     }
 
     private void OpenUIBackpack()
