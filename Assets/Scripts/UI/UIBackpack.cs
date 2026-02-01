@@ -77,11 +77,15 @@ public class UIBackpack : MonoBehaviour
     public void SetItems(IReadOnlyList<InventoryItem> items)
     {
         _cachedItems.Clear();
-        _cachedItems.AddRange(items);
-
-        for (var i = 0; i < items.Count; i++)
+        int minCount = Math.Min(items.Count, _slots.Count);
+        for (var i = 0; i < minCount; i++)
         {
-            string itemId = items[i].GetItemID();
+            _cachedItems.Add(items[i]);
+        }
+
+        for (var i = 0; i < _cachedItems.Count; i++)
+        {
+            string itemId = _cachedItems[i].GetItemID();
             if (string.IsNullOrEmpty(itemId))
             {
                 _slots[i].SetIcon(null);
@@ -89,7 +93,7 @@ public class UIBackpack : MonoBehaviour
                 continue;
             }
 
-            string itemDataId = $"{items[i].GetTypeId()}-{itemId}";
+            string itemDataId = $"{_cachedItems[i].GetTypeId()}-{itemId}";
             ItemData data = _itemDataTable.GetData(itemDataId);
             if (data == null)
             {
@@ -102,7 +106,7 @@ public class UIBackpack : MonoBehaviour
             _slots[i].ShowIcon();
         }
 
-        for (var i = items.Count; i < _slots.Count; i++)
+        for (var i = _cachedItems.Count; i < _slots.Count; i++)
         {
             _slots[i].SetIcon(null);
             _slots[i].HideIcon();
