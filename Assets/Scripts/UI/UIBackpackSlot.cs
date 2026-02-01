@@ -21,9 +21,18 @@ public class UIBackpackSlot : MonoBehaviour
         Clicked?.Invoke();
     }
 
+    public void ShowIcon()
+    {
+        _icon.gameObject.SetActive(true);
+    }
+
+    public void HideIcon()
+    {
+        _icon.gameObject.SetActive(false);
+    }
+
     public void SetIcon(Sprite icon)
     {
         _icon.sprite = icon;
-        _icon.gameObject.SetActive(icon != null);
     }
 }

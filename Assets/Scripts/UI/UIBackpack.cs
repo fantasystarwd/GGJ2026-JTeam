@@ -85,12 +85,7 @@ public class UIBackpack : MonoBehaviour
             if (string.IsNullOrEmpty(itemKey))
             {
                 _slots[i].SetIcon(null);
-                continue;
-            }
-
-            if (itemKey == "Unknown")
-            {
-                _slots[i].SetIcon(null);
+                _slots[i].ShowIcon();
                 continue;
             }
 
@@ -98,15 +93,18 @@ public class UIBackpack : MonoBehaviour
             if (data == null)
             {
                 _slots[i].SetIcon(null);
+                _slots[i].ShowIcon();
                 continue;
             }
 
             _slots[i].SetIcon(data.icon);
+            _slots[i].ShowIcon();
         }
 
         for (var i = items.Count; i < _slots.Count; i++)
         {
             _slots[i].SetIcon(null);
+            _slots[i].HideIcon();
         }
     }
 

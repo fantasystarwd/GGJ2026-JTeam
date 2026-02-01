@@ -19,7 +19,7 @@ public struct InventoryItem
             case InteractiveConditionType.ObjectType:
                 return propType.ToString();
             default:
-                return "Unknown";
+                return "";
         }
     }
 }
