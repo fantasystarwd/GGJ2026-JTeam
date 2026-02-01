@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Backpack
+  m_text: "\u80CC\u5305 (B)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a731da105d9455f438f21a760c2150a7, type: 2}
   m_sharedMaterial: {fileID: -5699420690861800767, guid: a731da105d9455f438f21a760c2150a7, type: 2}
