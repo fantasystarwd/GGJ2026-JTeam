@@ -94,7 +94,7 @@ public class InteractiveObjectBase : MonoBehaviour
                     break;
                 case InteractiveConditionType.AccessoriesType:
 
-                    if ((!GameManager.Instance.HasItem(condition.accessoriesType.ToString())) != condition.isAntiLogic)
+                    if ((player.myCurrentAccessory != condition.accessoriesType != condition.isAntiLogic))
                     {
                         canInteract = false;
                     }
@@ -118,11 +118,11 @@ public class InteractiveObjectBase : MonoBehaviour
 
         if (!canInteract)
         {
-            ProcessInteractiveResult(ref interactiveFailResults);
+            ProcessInteractiveResult(player, ref interactiveFailResults);
             return;
         }
 
-        ProcessInteractiveResult(ref interactiveSuccessResults);
+        ProcessInteractiveResult(player,ref interactiveSuccessResults);
 
         if (CloseIfSuccess)
         {
@@ -139,7 +139,7 @@ public class InteractiveObjectBase : MonoBehaviour
         }
     }
 
-    private void ProcessInteractiveResult(ref InteractiveResult[] results)
+    private void ProcessInteractiveResult(PlayerMovement player ,ref InteractiveResult[] results)
     {
         foreach (var result in results)
         {
@@ -149,6 +149,7 @@ public class InteractiveObjectBase : MonoBehaviour
                     GameManager.Instance.ShowTextBubble(showMessageAnchor, result.message);
                     break;
                 case InteractiveResultType.WearMask:
+                    player.ChangeMask(result.getObject.maskClass);
                     break;
                 case InteractiveResultType.GetObject:
                     GameManager.Instance.AddItem(result.getObject);
