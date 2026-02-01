@@ -163,10 +163,8 @@ public class GameManager : MonoBehaviour
                     continue;
                 }
 
-                if (!_inventoryManager.HasMask(maskId))
-                {
-                    interactiveObject.gameObject.SetActive(false);
-                }
+                bool hasThisMask = _inventoryManager.HasMask(maskId);
+                interactiveObject.gameObject.SetActive(hasThisMask);
             }
         }
 
