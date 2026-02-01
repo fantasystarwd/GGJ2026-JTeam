@@ -17,6 +17,17 @@ public enum InteractiveResultType
     GetObject,
     OpenObstacle,
     Cooking,
+    ChangeLevel,
+}
+
+/// <summary>
+/// 轉換場景資訊
+/// </summary>
+[System.Serializable]
+public struct ChangeLevelInfo
+{
+    public GameObject levelRoot;
+    public Transform playerStartPosition;
 }
 
 /// <summary>
@@ -42,10 +53,16 @@ public struct InteractiveResult
     public string message;
     public InventoryItem getObject;
     public InteractObject actObject;
+    public ChangeLevelInfo changeLevelInfo;
 }
 
 public class InteractiveObjectBase : MonoBehaviour
 {
+    /// <summary>
+    /// 玩家一進入這個觸發就會互動
+    /// </summary>
+    [SerializeField]
+    private bool WithoutInteract;
     /// <summary>
     /// 互動條件
     /// </summary>
@@ -74,6 +91,20 @@ public class InteractiveObjectBase : MonoBehaviour
     /// 顯示訊息茅點設定
     /// </summary>
     private Transform showMessageAnchor;
+
+    /// <summary>
+    /// 玩家一進入這個觸發就會判斷是否能直接互動
+    /// </summary>
+    /// <param name="player"></param>
+    public void InteractOnEnter(PlayerMovement player)
+    {
+        if(!WithoutInteract)
+        {
+            return;
+        }
+
+        Interact(player);
+    }
 
     /// <summary>
     /// 玩家與此物件互動時觸發
@@ -166,6 +197,9 @@ public class InteractiveObjectBase : MonoBehaviour
                             GameManager.Instance.AddItem(result.getObject);
                         }
                     }
+                    break;
+                case InteractiveResultType.ChangeLevel:
+                    GameManager.Instance.ChangeLevel(result.changeLevelInfo.levelRoot, result.changeLevelInfo.playerStartPosition.position);
                     break;
             }
         }

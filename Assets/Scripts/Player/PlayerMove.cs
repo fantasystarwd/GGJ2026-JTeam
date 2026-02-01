@@ -78,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
         if (obj != null)
         {
             currentInteractable = obj;
+            currentInteractable.InteractOnEnter(this);
         }
     }
 

@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Camera _uiCamera;
     [SerializeField]
+    private GameObject _levelRoot;
+    [SerializeField]
     private Transform _startPosition;
     [SerializeField]
     private Transform _player;
@@ -193,5 +195,16 @@ public class GameManager : MonoBehaviour
     public void ShowTextBubble(Transform pivot, string text)
     {
         _uiTextBubble.Show(pivot, _gameCamera, _uiCamera, text);
+    }
+
+    public void ChangeLevel(GameObject levelRoot, Vector3 playerStartPosition)
+    {
+        if (_levelRoot != null)
+        {
+            _levelRoot.SetActive(false);
+        }
+        _levelRoot = levelRoot;
+        _levelRoot.SetActive(true);
+        _player.position = playerStartPosition;
     }
 }
