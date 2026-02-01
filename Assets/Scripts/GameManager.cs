@@ -211,6 +211,12 @@ public class GameManager : MonoBehaviour
         _uiBackpack.SetItems(_inventoryManager.items);
     }
 
+    public void GainMask(MaskClass mask)
+    {
+        _inventoryManager.GainMask(mask.ToString());
+        _player.ChangeMask(mask);
+    }
+
     public bool HasItem(string itemName)
     {
         return _inventoryManager.HasItem(itemName);
