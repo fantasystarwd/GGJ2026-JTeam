@@ -65,61 +65,61 @@ MonoBehaviour:
     isUsable: 0
   - id: Accessories-Glassbead
     name: Glassbead
-    icon: {fileID: 0}
+    icon: {fileID: -5426115362510679907, guid: bc278afb32780d64db98c6d4e7d74623, type: 3}
     value: 0
-    isUsable: 0
+    isUsable: 1
   - id: Accessories-Feather
     name: Feather
-    icon: {fileID: 0}
+    icon: {fileID: 5959716989016200150, guid: bc278afb32780d64db98c6d4e7d74623, type: 3}
     value: 0
-    isUsable: 0
+    isUsable: 1
   - id: Accessories-Icecrystal
     name: Icecrystal
-    icon: {fileID: 0}
+    icon: {fileID: 3189651309368327125, guid: bc278afb32780d64db98c6d4e7d74623, type: 3}
     value: 0
-    isUsable: 0
+    isUsable: 1
   - id: Accessories-Pyroxene
     name: Pyroxene
-    icon: {fileID: 0}
+    icon: {fileID: -3264327283942549112, guid: bc278afb32780d64db98c6d4e7d74623, type: 3}
     value: 0
-    isUsable: 0
+    isUsable: 1
   - id: Prop-mushroom
     name: mushroom
-    icon: {fileID: 0}
-    value: 0
-    isUsable: 0
+    icon: {fileID: 21300000, guid: 92247c499574ab8488448a4175d66f85, type: 3}
+    value: 1
+    isUsable: 1
   - id: Prop-potato
     name: potato
-    icon: {fileID: 0}
-    value: 0
-    isUsable: 0
+    icon: {fileID: 21300000, guid: 9b853b5f49dd09d45a6904e654a71a0c, type: 3}
+    value: 2
+    isUsable: 1
   - id: Prop-corn
     name: corn
-    icon: {fileID: 0}
-    value: 0
-    isUsable: 0
+    icon: {fileID: 21300000, guid: 22c72b20459b9f044a9966e84eed87c9, type: 3}
+    value: 3
+    isUsable: 1
   - id: Prop-rawmeat
     name: rawmeat
     icon: {fileID: 0}
-    value: 0
-    isUsable: 0
+    value: 5
+    isUsable: 1
   - id: Prop-mushroomsoup
     name: mushroomsoup
-    icon: {fileID: 0}
-    value: 0
-    isUsable: 0
+    icon: {fileID: 21300000, guid: 25d33f7cb0ac5774cba7de4b03916df6, type: 3}
+    value: 4
+    isUsable: 1
   - id: Prop-fries
     name: fries
-    icon: {fileID: 0}
-    value: 0
-    isUsable: 0
+    icon: {fileID: 21300000, guid: 3a9dbf911a4ce664b8e8f323d549749b, type: 3}
+    value: 6
+    isUsable: 1
   - id: Prop-roastedcorn
     name: roastedcorn
-    icon: {fileID: 0}
-    value: 0
-    isUsable: 0
+    icon: {fileID: 21300000, guid: 79566c32f4a65af46919828797d7db7a, type: 3}
+    value: 7
+    isUsable: 1
   - id: Prop-grilledporkchops
     name: grilledporkchops
-    icon: {fileID: 0}
-    value: 0
-    isUsable: 0
+    icon: {fileID: 21300000, guid: d84bfb55ed841a246afef0a591c97141, type: 3}
+    value: 8
+    isUsable: 1
