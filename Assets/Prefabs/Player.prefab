@@ -626,8 +626,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.52}
+  m_Center: {x: 0, y: 0, z: 0.76}
 --- !u!54 &3760946936958638883
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -685,15 +685,15 @@ MonoBehaviour:
     modelObject: {fileID: 6536642136441629291}
   - type: 5
     modelObject: {fileID: 549634906739229793}
-  - type: 4
+  - type: 6
     modelObject: {fileID: 549634906739229793}
-  - type: 4
+  - type: 7
     modelObject: {fileID: 549634906739229793}
-  - type: 4
+  - type: 8
     modelObject: {fileID: 549634906739229793}
-  - type: 4
+  - type: 9
     modelObject: {fileID: 549634906739229793}
-  - type: 4
+  - type: 10
     modelObject: {fileID: 549634906739229793}
   accessoryModels:
   - type: 1
